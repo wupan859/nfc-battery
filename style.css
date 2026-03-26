@@ -1,0 +1,159 @@
+/* 基础变量与深浅色模式自动切换 */
+:root {
+    --bg-color: #F2F2F7;
+    --card-bg: #FFFFFF;
+    --text-main: #000000;
+    --text-secondary: #8E8E93;
+    --brand-color: #007AFF;
+    --border-color: rgba(60, 60, 67, 0.1);
+    --alert-color: #FF3B30;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #000000;
+        --card-bg: #1C1C1E;
+        --text-main: #FFFFFF;
+        --text-secondary: #EBEBF5;
+        --border-color: rgba(84, 84, 88, 0.65);
+    }
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.5;
+    font-size: 16px;
+    /* 防止横向滚动 */
+    overflow-x: hidden;
+    width: 100vw;
+}
+
+/* 顶部导航 */
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-color);
+    z-index: 10;
+}
+
+#page-title {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.4px;
+}
+
+#refresh-btn {
+    position: absolute;
+    right: 16px;
+    background: none;
+    border: none;
+    color: var(--brand-color);
+    padding: 8px; /* 增加触控面积 ≥ 16px */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 主体内容区，限制最大宽度适应移动端 320-414px */
+main {
+    padding: 0 16px 24px;
+    max-width: 414px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.state-message {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-secondary);
+    font-size: 15px;
+}
+
+/* 卡片基础样式 */
+.card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+}
+
+/* 顶部核心信息区块 (Hero) */
+.hero-section {
+    display: flex;
+    padding: 24px 0;
+}
+
+.hero-item {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    padding: 0 8px;
+}
+
+/* 分割线 */
+.hero-item:first-child::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 15%;
+    height: 70%;
+    width: 1px;
+    background-color: var(--border-color);
+}
+
+.hero-value {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--text-main);
+}
+
+.hero-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* 列表信息区块 (List) */
+.list-section {
+    padding: 4px 16px;
+}
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 15px;
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+.list-label {
+    color: var(--text-secondary);
+    flex-shrink: 0;
+}
+
+.list-value {
+    font-weight: 400;
+    text-align: right;
+    color: var(--text-main);
+    word-break: break-all;
+    padding-left: 16px;
+}
