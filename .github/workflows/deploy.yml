@@ -18,5 +18,10 @@ jobs:
       - name: Login CloudBase
         run: tcb login --apiKeyId ${{ secrets.TCB_SECRET_ID }} --apiKey ${{ secrets.TCB_SECRET_KEY }}
 
+      - name: Prepare static files
+        run: |
+          mkdir -p static
+          cp index.html style.css main.js config.js static/
+
       - name: Deploy to CloudBase Static Hosting
-        run: tcb hosting deploy . / -e ${{ secrets.TCB_ENV_ID }}
+        run: tcb hosting deploy ./static / -e ${{ secrets.TCB_ENV_ID }}
